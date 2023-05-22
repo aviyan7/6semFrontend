@@ -1,0 +1,79 @@
+<div class="all-posts" *ngIf="Object.values(allPosts)?.length">
+  <div class="social-sharing posts-list mt-4" *ngFor="let post of Object.values(allPosts)">
+    <img class="avatar" src="assets/user-avatar.png" alt="Profile Picture">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-header">
+          <div class="creator-details">
+            <h2>{{post?.createdByUser?.fullName | titlecase}}</h2>
+          </div>
+          <p>{{post?.createdDate | date}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-justify">
+          {{post?.description}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center" *ngFor="let d of post?.postImages">
+        <img class="postImages" [src]="d" height="200" alt="Post Images">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-actions">
+          <button class="like-button" (click)="onLikeBtnClick(post)"> <i class="fa fa-thumbs-up"></i> Like</button>
+          <button class="comment-button" (click)="onWriteCommentBtnClick(post)"><i class="fa fa-comment"></i> Write Comment</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-likes">
+          <p> {{post?.totalLikes?.length - 1}} likes -  {{post?.comments?.length - 1}} comments | <span type="button" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">See all comments</span> </p>
+        </div>
+      </div>
+    </div>
+
+    <!--to view comments-->
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">All Comments posted by users</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ng-container *ngFor="let data of post?.comments">
+          <div class="social-sharing posts-list mt-4" *ngIf="data?.comments">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="post-header">
+                  <div class="creator-details">
+                    <h6>{{data?.date | date}}</h6>
+                  </div>
+                  <p>{{data?.user?.fullName | titlecase}}</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <p>{{data?.comments | titlecase}}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="no-posts" *ngIf="!Object.values(allPosts).length">
+  <div class="row">
+    <div class="col-md-12">
+      <p>No post has been created yet. Please create to view post details !</p>
+    </div>
+  </div>
+</div>

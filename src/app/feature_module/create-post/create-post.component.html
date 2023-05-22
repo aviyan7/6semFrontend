@@ -1,0 +1,110 @@
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="page-title-box d-flex align-items-center">
+      <i class="fa fa-arrow-left cursor-pointer" (click)="onNavigateBack()"></i>
+      <h4 class="mb-0 ms-3">
+        Share your thought with other people
+      </h4>
+    </div>
+  </div>
+</div>
+<hr />
+
+
+<div class="main row mx-3">
+  <div class="col" [class]="postRequestModel.postImages?.length ? 'col-6' : 'col-12'">
+    <div class="card border-primary">
+      <form class="card-body" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="locationName">Location Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="locationName"
+                name="locationName"
+                placeholder="Enter Location Name"
+                formControlName="location"
+                required
+              />
+
+              <span *ngIf="submitted || form['location'].touched || form['location'].dirty && form['location'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['location'].errors && form['location'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['location'].errors && form['location'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['location'].errors && form['location'].errors?.['maxlength']">Should contains max 20 characters.</small>
+              </span>
+
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">What's on your mind ? </label>
+              <textarea
+                type="text"
+                rows="5"
+                class="form-control"
+                id="description"
+                name="description"
+                required
+                formControlName="description"
+                placeholder="What's on your mind ?">
+              </textarea>
+
+              <span *ngIf="submitted || form['description']?.touched || form['description'].dirty && form['description'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['description'].errors && form['description'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['description'].errors && form['description'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['description'].errors && form['description'].errors?.['maxlength']">Should contains max 1500 characters.</small>
+              </span>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label> Upload Image </label>
+
+              <input
+                type="file"
+                name="image"
+                id="imagepicker"
+                accept="image/*"
+                [multiple]="false"
+                (change)="uploadFile($event)"
+                class="form-control"
+              />
+              <div class="text-info text-center" [hidden]="!uploadPercent || uploadPercent == 100">
+                uploading {{ uploadPercent | number: "1.0-0" }} % of 100% <br />
+                Please wait a little...
+              </div>
+              <div class="text-success text-uppercase text-center" *ngIf="uploadPercent == 100">
+                Upload finished
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group text-center">
+              <button type="submit" (click)="onNavigateBack()" class="btn btn-primary me-2" [disabled]="!postRequestModel.postImages?.length">
+                Cancel
+              </button>
+              <button class="btn btn-primary ms-2" [disabled]="!postRequestModel.postImages?.length">
+                Create Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col col-md-6" *ngIf="postRequestModel.postImages?.length">
+    <h3 class="text-success text-center text-uppercase">Uploaded Image</h3>
+    <img *ngFor="let img of postRequestModel.postImages" [src]="img" alt="Uploaded Image" class="img-fluid w-100" />
+  </div>
+</div>

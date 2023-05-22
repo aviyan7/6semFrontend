@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-default">
+  <div class="container">
+    <a class="navbar-brand text-white" routerLink="/home/dashboard" href="javascript:void(0)">Social Media Platform</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/home/dashboard" aria-current="page" href="javascript:void(0)">Home</a>
+        </li>
+        <li class="nav-item" (click)="onCreateNewPost()">
+          <a class="nav-link active" aria-current="page" href="javascript:void(0)">Create New Post</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
+        <li class="nav-item dropdown">
+          <a [ngbTooltip]="userDetails" class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user"></i> <span class="ms-3"> {{userDetails?.length > 25 ? userDetails.slice(0, 24) + '...' : userDetails}} </span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li (click)="onLogout()"><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

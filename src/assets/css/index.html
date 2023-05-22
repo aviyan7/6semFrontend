@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>
+      Credit X Loan Automation System | Digital Solutions for Your Workstation
+    </title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="Credit X Loan Automation System" name="description"/>
+    <meta content="Loan Automation System" name="Paribartan Kalathoki"/>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap1.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="assets/css/app1.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="manifest" href="manifest.webmanifest"/>
+    <meta name="theme-color" content="#1976d2"/>
+
+    <style>
+      app-root p.loader-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #000000;
+        font-size: 1.5em;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      @keyframes dots {
+        50% {
+          transform: translateY(-0.4rem);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .d {
+        animation: dots 1.5s ease-out infinite;
+        margin-left: 5px;
+      }
+      .d-2 {
+        animation-delay: 0.5s;
+        margin-left: 5px;
+      }
+      .d-3 {
+        animation-delay: 1s;
+        margin-left: 5px;
+      }
+    </style>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1976d2">
+</head>
+  <body data-topbar="dark">
+    <app-root>
+      <p class="loader-text">
+        Please wait  <span class="d"> . </span><span class="d d-2"> . </span><span class="d d-3"> . </span>
+      </p>
+    </app-root>
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+.social-sharing {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.social-sharing img.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 20px;
+}
+
+img.postImages {
+  width: 100px;
+  height: 100px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.post-header h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.post-header p {
+  font-size: 14px;
+  color: #999;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.post-actions .like-button,
+.post-actions .comment-button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.post-likes {
+  margin-top: 20px;
+}
+
+.post-likes p {
+  font-size: 14px;
+  color: #999;
+}
+
+.post-comments {
+  margin-top: 20px;
+}
