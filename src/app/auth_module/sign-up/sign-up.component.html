@@ -21,7 +21,7 @@
             />
 
             <span *ngIf="submitted || form['fullName'].touched || form['fullName'].dirty && form['fullName'].invalid" class="info-msg text-danger">
-                <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['required']">Full Name is required.</small>
                 <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['minlength']">Should have min 4 valid characters.</small>
                 <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['maxlength']">Should contains max 25 characters.</small>
             </span>
@@ -43,8 +43,8 @@
             />
 
             <span *ngIf="submitted || form['email'].touched || form['email'].dirty && form['email'].invalid" class="info-msg text-danger">
-                <small *ngIf="form['email'].errors && form['email'].errors?.['required']">This is the required field.</small>
-                <small *ngIf="form['email'].errors && form['email'].errors?.['minlength']">Should have valid characters.</small>
+                <small *ngIf="form['email'].errors && form['email'].errors?.['required']">Email is required.</small>
+                <small *ngIf="form['email'].errors && form['email'].errors?.['minlength']">Please enter a valid email.</small>
             </span>
           </div>
         </div>
@@ -60,7 +60,7 @@
             />
             <span (click)="onPasswordToggle()" toggle="#password" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" class="fa fa-fw field-icon password-toggler"></span>
             <span *ngIf="submitted || form['password'].touched || form['password'].dirty && form['password'].invalid" class="info-msg text-danger">
-                <small *ngIf="form['password'].errors && form['password'].errors?.['required']">This is the required field</small>
+                <small *ngIf="form['password'].errors && form['password'].errors?.['required']">Password is required.</small>
                 <small *ngIf="form['password'].errors && form['password'].errors?.['minlength']">Should have at least 6 characters.</small>
             </span>
           </div>

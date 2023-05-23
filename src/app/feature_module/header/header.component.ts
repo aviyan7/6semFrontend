@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../auth_module/services/auth.service';
-import {ToastrService} from 'ngx-toastr';
+// import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
     private router: Router
   ) { }
 

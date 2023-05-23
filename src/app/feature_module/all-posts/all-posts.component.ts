@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FeatureService} from '../services/feature.service';
-import {ToastrService} from 'ngx-toastr';
+// import {ToastrService} from 'ngx-toastr';
 import {CreatePostRequestModel} from '../models/create-post-request.model';
 import {PostActionRequestDetailsModel} from '../models/post-action-request-details.model';
 import {AuthService} from '../../auth_module/services/auth.service';
@@ -22,7 +22,7 @@ export class AllPostsComponent implements OnInit {
   postActionRequestDetailsModel: PostActionRequestDetailsModel = new PostActionRequestDetailsModel();
   constructor(
     private featureService: FeatureService,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
     private authService: AuthService,
     private modalService: NgbModal
   ) { }
@@ -38,7 +38,7 @@ export class AllPostsComponent implements OnInit {
         this.allPosts = res;
       },
       error: (err: any) => {
-        this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
+        // this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
       },
     });
   }
@@ -65,12 +65,12 @@ export class AllPostsComponent implements OnInit {
         post.comments?.push(this.postActionRequestDetailsModel);
         this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
           next: (res: any) => {
-            this.toastr.success('Comment posted successfully !', 'Success');
+            // this.toastr.success('Comment posted successfully !', 'Success');
             this.getAllPosts();
             this.modalService.dismissAll();
           },
           error: (error: any) => {
-            this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
+            // this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
             this.modalService.dismissAll();
           },
         });

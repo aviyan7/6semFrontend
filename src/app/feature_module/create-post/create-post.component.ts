@@ -4,7 +4,7 @@ import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators} from 
 import {finalize} from 'rxjs';
 import {imageResizerConfig} from '../../core_module/utils/image-resizer-util';
 // import {readAndCompressImage} from 'browser-image-resizer';
-import {ToastrService} from 'ngx-toastr';
+// import {ToastrService} from 'ngx-toastr';
 // import {AngularFireDatabase} from '@angular/fire/compat/database';
 // import {AngularFireStorage} from '@angular/fire/compat/storage';
 import {FeatureService} from '../services/feature.service';
@@ -29,7 +29,7 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private location: Location,
     private formBuilder: UntypedFormBuilder,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
     // private database: AngularFireDatabase,
     // private storage: AngularFireStorage,
     private featureService: FeatureService,
@@ -71,15 +71,15 @@ export class CreatePostComponent implements OnInit {
     if (this.postForm.valid && this.postRequestModel.postImages?.length) {
       this.featureService.savePostDetails(this.postRequestModel).subscribe({
         next: (response: any) => {
-          this.toastr.success("Post Created Successfully", "Success");
+          // this.toastr.success("Post Created Successfully", "Success");
           this.onNavigateBack();
         },
         error: (err: any) => {
-          this.toastr.success("Something went wrong and unable to create post", "Error Occurs");
+          // this.toastr.success("Something went wrong and unable to create post", "Error Occurs");
         }
       });
     } else {
-      this.toastr.warning("Please fill all the field details", "Warning");
+      // this.toastr.warning("Please fill all the field details", "Warning");
     }
 
   }

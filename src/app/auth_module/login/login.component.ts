@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     if (this.loginForm.valid) {
       this.btnStatus = 'Please Wait ...';
-
+      this.router.navigate(['/home/dashboard']);
       const { email, password } = loginDetails;
       // this.authService
       //   .onSignIn(email, password)
