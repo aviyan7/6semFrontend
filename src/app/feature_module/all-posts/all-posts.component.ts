@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FeatureService} from '../services/feature.service';
-// import {ToastrService} from 'ngx-toastr';
 import {CreatePostRequestModel} from '../models/create-post-request.model';
 import {PostActionRequestDetailsModel} from '../models/post-action-request-details.model';
 import {AuthService} from '../../auth_module/services/auth.service';
 import {FilterUtil} from '../../core_module/utils/filter-util';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PostCommentComponent} from '../post-comment/post-comment.component';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-all-posts',
@@ -22,7 +22,7 @@ export class AllPostsComponent implements OnInit {
   postActionRequestDetailsModel: PostActionRequestDetailsModel = new PostActionRequestDetailsModel();
   constructor(
     private featureService: FeatureService,
-    // private toastr: ToastrService,
+    private toastr: ToastrService,
     private authService: AuthService,
     private modalService: NgbModal
   ) { }

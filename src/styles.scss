@@ -1,1 +1,162 @@
 /* You can add global styles to this file, and also import other style files */
+
+$base_color: #c5d0da;
+
+html, body {
+  width: 100%;
+  height: auto;
+}
+
+body {
+  background: $base_color;
+}
+
+.password-toggler {
+  float: right;
+  margin-right: 10px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+// header style start
+.navbar-default {
+  font-size: 1.15em;
+  font-weight: 400;
+  background-color: #006b96;
+  padding: 10px;
+  border: 0px;
+  border-radius: 0px;
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white !important;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #cbf0ff;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #004059;
+  color: white;
+}
+
+.navbar-default .navbar-toggle {
+  border: none;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border: none;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #002433;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.dropdown-menu {
+  background-color: #004059;
+  color: white;
+  border: 0px;
+  border-radius: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dropdown-menu > li > a {
+  background-color: #004059;
+  color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: #004059;
+  color: white;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #003246;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .dropdown-menu > li > a {
+    background-color: #006b96;
+    color: #ffffff;
+  }
+  .dropdown-menu > li > a:hover {
+    color: #ffffff;
+  }
+
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: #ffffff;
+    background-color: transparent;
+  }
+
+  .dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #005577;
+  }
+}
+
+/* END Media Query */
+
+
+.profile-menu {
+  .dropdown-menu {
+    right: 0;
+    left: unset;
+  }
+
+  .fa-fw {
+    margin-right: 10px;
+  }
+}
+
+.toggle-change {
+  &::after {
+    border-top: 0;
+    border-bottom: .3em solid;
+  }
+}
+
+// end header styling
+
+
+// footer style start
+
+.footer {
+  padding: 15px;
+  margin-top: 30px;
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+// end footer styling
+/* You can add global styles to this file, and also import other style files */

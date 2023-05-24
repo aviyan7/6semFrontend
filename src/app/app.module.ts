@@ -7,7 +7,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RequestInterceptor} from './core_module/auth-interceptor/request-interceptor';
 import {BaseModule} from './base_module/base.module';
 import {CoreModule} from './core_module/core.module';
-// import {ToastrModule} from 'ngx-toastr';
+import {ToastrModule} from 'ngx-toastr';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -21,7 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     BaseModule.forRoot(),
     CoreModule.forRoot(),
-    // ToastrModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},

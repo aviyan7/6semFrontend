@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-// import {ToastrService} from 'ngx-toastr';
+import {ToastrService} from "ngx-toastr";
 // import {AngularFireDatabase} from '@angular/fire/compat/database';
 //
 // import { v4 as uuidv4 } from 'uuid';
@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: UntypedFormBuilder,
     private router: Router,
-    // private toastr: ToastrService,
+    private toastr: ToastrService,
     // private database: AngularFireDatabase
   ) {
   }
@@ -63,6 +63,7 @@ export class SignUpComponent implements OnInit {
       this.btnStatus = 'Please Wait ...';
 
       const {email, password} = loginDetails;
+      this.router.navigateByUrl('/');
       // this.authService
       //   .onSignUp(email, password)
       //   .then((res: any) => {

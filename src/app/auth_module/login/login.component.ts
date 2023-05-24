@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-// import {ToastrService} from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: UntypedFormBuilder,
     private router: Router,
-    // private toastr: ToastrService
+    private toastr: ToastrService
   ) {
   }
 

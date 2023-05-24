@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-// import {ToastrService} from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot-password',
@@ -22,7 +22,7 @@ export class ForgotPasswordComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: UntypedFormBuilder,
     private router: Router,
-    // private toastr: ToastrService
+    private toastr: ToastrService
   ) {
   }
 
@@ -49,6 +49,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.btnStatus = 'Please Wait ...';
 
       const { email } = loginDetails;
+      this.toastr.success('Please check your email and follow the instruction before proceed !', 'Success');
       // this.authService
       //   .onForgotPassword(email)
       //   .then((res: any) => {
