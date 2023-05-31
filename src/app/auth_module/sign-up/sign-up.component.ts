@@ -38,9 +38,13 @@ export class SignUpComponent implements OnInit {
 
   initLoginForm() {
     this.signUpForm = this.formBuilder.group({
-      fullName: [
+      firstName: [
         undefined,
-        Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(25)])
+        Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(25)])
+      ],
+      lastName: [
+        undefined,
+        Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(25)])
       ],
       email: [
         undefined,
@@ -62,8 +66,17 @@ export class SignUpComponent implements OnInit {
     if (this.signUpForm.valid) {
       this.btnStatus = 'Please Wait ...';
 
-      const {email, password} = loginDetails;
-      this.router.navigateByUrl('/');
+      const {firstName, lastName, email, password} = loginDetails;
+      console.log("hahah",loginDetails);
+
+      this.authService.registerNewUser(loginDetails).subscribe((response: any)=>{
+        this.toastr.success('User Registered Successfully');
+        this.router.navigateByUrl('/');
+      }, (error: any)=>{
+        this.toastr.error("Something went wrong!!");
+      });
+          // this.signUpForm.reset();
+
       // this.authService
       //   .onSignUp(email, password)
       //   .then((res: any) => {

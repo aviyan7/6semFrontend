@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 // import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {HttpUtils} from '../../core_module/utils/http-utils/http-utils';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
+import {environment} from "../../../environments/environment";
 // import {AngularFireDatabase} from '@angular/fire/compat/database';
 
 @Injectable({
@@ -11,16 +12,26 @@ import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-es
 })
 export class AuthService {
 
-  static API = 'users';
+  static API = 'auth/register';
+  apiUrlEndPoint: string = '/auth/register';
+  baseUrl: string = environment.baseUrl;
 
   constructor(
-    // private auth: AngularFireAuth,
     private httpClient: HttpClient,
-    // private firebase: AngularFireDatabase
   ) {}
 
   protected getApi(): string {
     return AuthService.API;
+  }
+
+  registerNewUser(data: any): Observable<any>{
+    const api = `${this.getApi()}`;
+    console.log("hahah",data);
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data);
+  }
+
+  loginUser(data: any): Observable<any>{
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data);
   }
 
   onSignUp(email: string, password: string) {

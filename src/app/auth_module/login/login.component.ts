@@ -59,6 +59,12 @@ export class LoginComponent implements OnInit {
       this.btnStatus = 'Please Wait ...';
       this.router.navigate(['/home/dashboard']);
       const { email, password } = loginDetails;
+      this.authService.loginUser(loginDetails).subscribe((response: any)=>{
+        //       this.toastr.success('Sign In successfully !', 'Success');
+        //       this.router.navigate(['/home/dashboard']);
+      }, (error: any)=>{
+        this.toastr.warning('Credentials do not match !', 'Warning');
+      })
       // this.authService
       //   .onSignIn(email, password)
       //   .then((res: any) => {

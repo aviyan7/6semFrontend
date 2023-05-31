@@ -11,19 +11,40 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <div class="form-group">
-            <label>Full Name</label>
+            <label>First Name</label>
             <input
               class="form__input form-control"
               type="text"
-              placeholder="Full Name"
-              [ngClass]="{ 'is-invalid': submitted && form['fullName'].errors }" placeholder="Your Full Name" formControlName="fullName" name="fullName"
+              placeholder="First Name"
+              [ngClass]="{ 'is-invalid': submitted && form['firstName'].errors }" placeholder="Your First Name" formControlName="firstName" name="firstName"
               required
             />
 
-            <span *ngIf="submitted || form['fullName'].touched || form['fullName'].dirty && form['fullName'].invalid" class="info-msg text-danger">
-                <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['required']">Full Name is required.</small>
-                <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['minlength']">Should have min 4 valid characters.</small>
-                <small *ngIf="form['fullName'].errors && form['fullName'].errors?.['maxlength']">Should contains max 25 characters.</small>
+            <span *ngIf="submitted || form['firstName'].touched || form['firstName'].dirty && form['firstName'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['firstName'].errors && form['firstName'].errors?.['required']">First Name is required.</small>
+                <small *ngIf="form['firstName'].errors && form['firstName'].errors?.['minlength']">Should have min 3 valid characters.</small>
+                <small *ngIf="form['firstName'].errors && form['firstName'].errors?.['maxlength']">Should contains max 25 characters.</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label>Last Name</label>
+            <input
+              class="form__input form-control"
+              type="text"
+              placeholder="Last Name"
+              [ngClass]="{ 'is-invalid': submitted && form['lastName'].errors }" placeholder="Your Last Name" formControlName="lastName" name="lastName"
+              required
+            />
+
+            <span *ngIf="submitted || form['lastName'].touched || form['lastName'].dirty && form['lastName'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['lastName'].errors && form['lastName'].errors?.['required']">Last Name is required.</small>
+                <small *ngIf="form['lastName'].errors && form['lastName'].errors?.['minlength']">Should have min 3 valid characters.</small>
+                <small *ngIf="form['lastName'].errors && form['lastName'].errors?.['maxlength']">Should contains max 25 characters.</small>
             </span>
           </div>
         </div>

@@ -8,7 +8,8 @@ html, body {
 }
 
 body {
-  background: $base_color;
+  //background: $base_color;
+  //background: #03a9f4;
 }
 
 .password-toggler {
@@ -36,7 +37,7 @@ a, a:hover {
 .navbar-default {
   font-size: 1.15em;
   font-weight: 400;
-  background-color: #006b96;
+  background: #03a9f4;
   padding: 10px;
   border: 0px;
   border-radius: 0px;
@@ -154,7 +155,8 @@ a, a:hover {
   padding: 15px;
   margin-top: 30px;
   text-align: center;
-  background: black;
+  //background: black;
+  background: #03a9f4;
   color: white;
 }
 
