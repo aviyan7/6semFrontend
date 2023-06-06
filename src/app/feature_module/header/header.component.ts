@@ -40,9 +40,15 @@ export class HeaderComponent implements OnInit {
     // }, (error: any) => {
     //   this.toastr.error("Something went wrong, unable to sign out !", "Error Occurs");
     // });
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 
   onCreateNewPost() {
     this.router.navigate(['/home/create-new-post']);
+  }
+
+  onCreateNewSubGroup(){
+    this.router.navigate(['/home/create-new-subGroup']);
   }
 }

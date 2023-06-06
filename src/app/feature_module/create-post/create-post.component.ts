@@ -4,9 +4,7 @@ import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators} from 
 import {finalize} from 'rxjs';
 import {imageResizerConfig} from '../../core_module/utils/image-resizer-util';
 // import {readAndCompressImage} from 'browser-image-resizer';
-// import {ToastrService} from 'ngx-toastr';
-// import {AngularFireDatabase} from '@angular/fire/compat/database';
-// import {AngularFireStorage} from '@angular/fire/compat/storage';
+import {ToastrService} from 'ngx-toastr';
 import {FeatureService} from '../services/feature.service';
 import {CreatePostRequestModel} from '../models/create-post-request.model';
 import {AuthService} from '../../auth_module/services/auth.service';
@@ -29,7 +27,7 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private location: Location,
     private formBuilder: UntypedFormBuilder,
-    // private toastr: ToastrService,
+    private toastr: ToastrService,
     // private database: AngularFireDatabase,
     // private storage: AngularFireStorage,
     private featureService: FeatureService,
@@ -62,24 +60,23 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit() {
-    this.postRequestModel.location = this.form['location'].value;
+    this.postRequestModel.postName = this.form['postName'].value;
     this.postRequestModel.description = this.form['description'].value;
-    this.postRequestModel.createdDate = new Date();
     // this.postRequestModel.id = uuidv4();
-    this.postRequestModel.totalLikes = [''];
+    this.postRequestModel.totalVotes = [''];
     this.postRequestModel.comments = [''];
     if (this.postForm.valid && this.postRequestModel.postImages?.length) {
       this.featureService.savePostDetails(this.postRequestModel).subscribe({
         next: (response: any) => {
-          // this.toastr.success("Post Created Successfully", "Success");
+          this.toastr.success("Post Created Successfully", "Success");
           this.onNavigateBack();
         },
         error: (err: any) => {
-          // this.toastr.success("Something went wrong and unable to create post", "Error Occurs");
+          this.toastr.success("Something went wrong and unable to create post", "Error Occurs");
         }
       });
     } else {
-      // this.toastr.warning("Please fill all the field details", "Warning");
+      this.toastr.warning("Please fill all the field details", "Warning");
     }
 
   }

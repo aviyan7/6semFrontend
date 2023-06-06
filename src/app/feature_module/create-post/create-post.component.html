@@ -18,21 +18,21 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="locationName">Location Name</label>
+              <label for="postName">Topic</label>
               <input
                 type="text"
                 class="form-control"
-                id="locationName"
-                name="locationName"
-                placeholder="Enter Location Name"
-                formControlName="location"
+                id="postName"
+                name="postName"
+                placeholder="Enter Topic"
+                formControlName="postName"
                 required
               />
 
-              <span *ngIf="submitted || form['location'].touched || form['location'].dirty && form['location'].invalid" class="info-msg text-danger">
-                <small *ngIf="form['location'].errors && form['location'].errors?.['required']">This is the required field.</small>
-                <small *ngIf="form['location'].errors && form['location'].errors?.['minlength']">Should have min 4 characters.</small>
-                <small *ngIf="form['location'].errors && form['location'].errors?.['maxlength']">Should contains max 20 characters.</small>
+              <span *ngIf="submitted || form['postName'].touched || form['postName'].dirty && form['postName'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['postName'].errors && form['postName'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['postName'].errors && form['postName'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['postName'].errors && form['postName'].errors?.['maxlength']">Should contains max 20 characters.</small>
               </span>
 
             </div>

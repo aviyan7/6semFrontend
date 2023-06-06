@@ -57,11 +57,12 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     if (this.loginForm.valid) {
       this.btnStatus = 'Please Wait ...';
-      this.router.navigate(['/home/dashboard']);
       const { email, password } = loginDetails;
       this.authService.loginUser(loginDetails).subscribe((response: any)=>{
-        //       this.toastr.success('Sign In successfully !', 'Success');
-        //       this.router.navigate(['/home/dashboard']);
+              console.log("hhh",response);
+              localStorage.setItem('token', response.token);
+              this.toastr.success('Sign In successfully !', 'Success');
+              this.router.navigate(['/home/dashboard']);
       }, (error: any)=>{
         this.toastr.warning('Credentials do not match !', 'Warning');
       })
@@ -82,6 +83,10 @@ export class LoginComponent implements OnInit {
       //     this.toastr.error(err.message, 'Error Occurs', { closeButton: true });
       //   });
     }
+  }
+
+  onLogOut(){
+    localStorage.clear();
   }
 
   onPasswordToggle() {

@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-// import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {HttpUtils} from '../../core_module/utils/http-utils/http-utils';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {environment} from "../../../environments/environment";
-// import {AngularFireDatabase} from '@angular/fire/compat/database';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,9 @@ export class AuthService {
 
   static API = 'auth/register';
   apiUrlEndPoint: string = '/auth/register';
+  apiUrlEndPoint2: string = '/auth/authenticate';
   baseUrl: string = environment.baseUrl;
+  private isAuthenticate = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -25,13 +26,23 @@ export class AuthService {
   }
 
   registerNewUser(data: any): Observable<any>{
-    const api = `${this.getApi()}`;
-    console.log("hahah",data);
-    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data);
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data).pipe(
+      map((res: any)=>{
+        if(res){
+          console.log("hh",res);
+        }
+      }));
   }
 
   loginUser(data: any): Observable<any>{
-    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data);
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint2),data).pipe(
+      map((res: any)=>{
+        if(res){
+          this.isAuthenticate = true;
+          return res;
+        }
+      })
+    );
   }
 
   onSignUp(email: string, password: string) {
@@ -51,7 +62,7 @@ export class AuthService {
   }
 
   onSignOut() {
-    return console.log('hello');
+    return this.isAuthenticate = false;
     // return this.auth.signOut();
   }
 
@@ -63,6 +74,10 @@ export class AuthService {
     const api = `${this.getApi()}`;
     const req = HttpUtils.getRequest(api);
     return this.httpClient.post(req.url, data);
+  }
+
+  isAuthenticated(): boolean {
+    return this.isAuthenticate;
   }
 
 

@@ -1,38 +1,39 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {HttpUtils} from '../../core_module/utils/http-utils/http-utils';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeatureService {
-
-  static API = 'social';
+  apiUrlEndPoint: string = '/post';
+  getData: string = '/all';
+  baseUrl: string = environment.baseUrl;
+  apiUrlEndPoint1: string = this.baseUrl + '/subGroup';
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
-  protected getApi(): string {
-    return FeatureService.API;
+  savePostDetails(data: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint),data);
   }
 
-  savePostDetails(data: any): Observable<any> {
-    const api = `${this.getApi()}/posts`;
-    const req = HttpUtils.getRequest(api);
-    return this.httpClient.post(req.url, data);
+  saveSubGroup(data: any): Observable<any>{
+    return this.httpClient.post(this.apiUrlEndPoint1, data);
   }
 
   updatePostDetails(data: any, uid: any): Observable<any> {
-    const api = `${this.getApi()}/posts/${uid}`;
-    const req = HttpUtils.getRequest(api);
-    return this.httpClient.put(req.url, data);
+    // const api = `${this.getApi()}/posts/${uid}`;
+    // const req = HttpUtils.getRequest(api);
+    // return this.httpClient.put(req.url, data);
+    return this.httpClient.put(this.baseUrl.concat(this.apiUrlEndPoint),data);
   }
 
   getAllPosts(): Observable<any> {
-    const api = `${this.getApi()}/posts`;
-    const req = HttpUtils.getRequest(api);
-    return this.httpClient.get(req.url);
+    // const api = `${this.getApi()}/posts`;
+    // const req = HttpUtils.getRequest(api);
+    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint));
   }
 }

@@ -1,0 +1,80 @@
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="page-title-box d-flex align-items-center">
+      <i class="fa fa-arrow-left cursor-pointer" (click)="onNavigateBack()"></i>
+      <h4 class="mb-0 ms-3">
+        Create a Group
+      </h4>
+    </div>
+  </div>
+</div>
+<hr />
+
+
+<div class="main row mx-3">
+  <div class="col-12">
+    <div class="card border-primary">
+      <form class="card-body" [formGroup]="subGroupForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter Group Name"
+                formControlName="name"
+                required
+              />
+
+              <span *ngIf="submitted || form['name'].touched || form['name'].dirty && form['name'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['name'].errors && form['name'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['name'].errors && form['name'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['name'].errors && form['name'].errors?.['maxlength']">Should contains max 20 characters.</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">What is the Group About?</label>
+              <textarea
+                type="text"
+                rows="5"
+                class="form-control"
+                id="description"
+                name="description"
+                required
+                formControlName="description"
+                placeholder="What is the Group About?">
+              </textarea>
+
+              <span *ngIf="submitted || form['description']?.touched || form['description'].dirty && form['description'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['description'].errors && form['description'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['description'].errors && form['description'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['description'].errors && form['description'].errors?.['maxlength']">Should contains max 1500 characters.</small>
+              </span>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group text-center">
+              <button type="submit" (click)="onNavigateBack()" class="btn btn-primary me-2">
+                Cancel
+              </button>
+              <button class="btn btn-primary ms-2">
+                Create Group
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

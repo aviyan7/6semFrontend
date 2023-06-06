@@ -82,7 +82,7 @@ export class AllPostsComponent implements OnInit {
 
   onLikeBtnClick(post: CreatePostRequestModel) {
     this.postActionRequestDetailsModel.date = new Date();
-    post.totalLikes?.push(this.postActionRequestDetailsModel);
+    post.totalVotes?.push(this.postActionRequestDetailsModel);
     this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
       next: (res: any) => {
         this.getAllPosts();

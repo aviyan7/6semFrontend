@@ -11,6 +11,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PostCommentComponent } from './post-comment/post-comment.component';
+import { CreateSubgroupComponent } from './create-subgroup/create-subgroup.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PostCommentComponent } from './post-comment/post-comment.component';
     AllPostsComponent,
     UserProfileComponent,
     PostCommentComponent,
+    CreateSubgroupComponent,
   ],
   imports: [
     CommonModule,

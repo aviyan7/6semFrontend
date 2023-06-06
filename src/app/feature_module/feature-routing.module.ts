@@ -3,13 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {MainBaseComponent} from './main-base/main-base.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {CreatePostComponent} from './create-post/create-post.component';
+import {CreateSubgroupComponent} from "./create-subgroup/create-subgroup.component";
+import {AuthGuard} from "../core_module/auth-guards/auth-guard";
 
 const routes: Routes = [
   {
     path: '', component: MainBaseComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent, data: {title: 'Application Dashboard'}},
-      {path: 'create-new-post', component: CreatePostComponent, data: {title: 'Post Your Idea'}}
+      {path: 'dashboard', component: DashboardComponent, data: {title: 'Application Dashboard'}, canActivate: [AuthGuard]},
+      {path: 'create-new-post', component: CreatePostComponent, data: {title: 'Post Your Idea'}},
+      {path: 'create-new-subGroup', component: CreateSubgroupComponent, data: {title: 'Create New Group'}}
     ]
   }
 ];
