@@ -35,16 +35,7 @@ export class CreateSubgroupComponent {
   }
 
   getUserDetails() {
-    // this.authService.getUser().subscribe((user: any) => {
-    //   console.log(user);
-    //  this.authService.getSavedUserDetailsById(user?.uid).subscribe({
-    //    next: (res: any) => {
-    //      this.postRequestModel.createdByUser = res;
-    //      console.log('this.postRequestModel.createdByUser: ', this.postRequestModel.createdByUser);
-    //    }, error: (err: any) => {
-    //    },
-    //  });
-    // });
+
   }
 
   get form(): { [key: string]: AbstractControl } {

@@ -38,7 +38,7 @@ export class AllPostsComponent implements OnInit {
         this.allPosts = res;
       },
       error: (err: any) => {
-        // this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
+        this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
       },
     });
   }
@@ -59,18 +59,19 @@ export class AllPostsComponent implements OnInit {
     modalRef.componentInstance.responseEmitter.subscribe((response: any) => {
       if (response) {
         this.postActionRequestDetailsModel.date = new Date();
+
         // @ts-ignore
         this.postActionRequestDetailsModel['comments'] = response;
         this.postActionRequestDetailsModel['user'] = this.postActionRequestDetailsModel.user;
         post.comments?.push(this.postActionRequestDetailsModel);
         this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
           next: (res: any) => {
-            // this.toastr.success('Comment posted successfully !', 'Success');
+            this.toastr.success('Comment posted successfully !', 'Success');
             this.getAllPosts();
             this.modalService.dismissAll();
           },
           error: (error: any) => {
-            // this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
+            this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
             this.modalService.dismissAll();
           },
         });

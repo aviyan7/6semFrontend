@@ -28,8 +28,6 @@ export class CreatePostComponent implements OnInit {
     private location: Location,
     private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService,
-    // private database: AngularFireDatabase,
-    // private storage: AngularFireStorage,
     private featureService: FeatureService,
     private authService: AuthService,
   ) { }
@@ -43,16 +41,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   getUserDetails() {
-    // this.authService.getUser().subscribe((user: any) => {
-    //   console.log(user);
-    //  this.authService.getSavedUserDetailsById(user?.uid).subscribe({
-    //    next: (res: any) => {
-    //      this.postRequestModel.createdByUser = res;
-    //      console.log('this.postRequestModel.createdByUser: ', this.postRequestModel.createdByUser);
-    //    }, error: (err: any) => {
-    //    },
-    //  });
-    // });
+
   }
 
   get form(): { [key: string]: AbstractControl } {

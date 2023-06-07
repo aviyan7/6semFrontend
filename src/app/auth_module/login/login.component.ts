@@ -66,22 +66,6 @@ export class LoginComponent implements OnInit {
       }, (error: any)=>{
         this.toastr.warning('Credentials do not match !', 'Warning');
       })
-      // this.authService
-      //   .onSignIn(email, password)
-      //   .then((res: any) => {
-      //     if (res?.user?.emailVerified) {
-      //       this.toastr.success('Sign In successfully !', 'Success');
-      //       this.router.navigate(['/home/dashboard']);
-      //     } else {
-      //       this.toastr.warning('Please verify your email account first to continue !', 'Warning');
-      //       this.authService.onSignOut().then();
-      //     }
-      //   })
-      //   .catch((err: any) => {
-      //     this.btnStatus = 'Sign In';
-      //     this.submitted = false;
-      //     this.toastr.error(err.message, 'Error Occurs', { closeButton: true });
-      //   });
     }
   }
 
