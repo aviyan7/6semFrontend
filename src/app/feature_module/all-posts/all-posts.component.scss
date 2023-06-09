@@ -22,7 +22,7 @@ img.postImages {
 .post-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .post-header h2 {
@@ -63,4 +63,8 @@ img.postImages {
 
 .post-comments {
   margin-top: 20px;
+}
+
+.creator-details{
+  color: #999;
 }

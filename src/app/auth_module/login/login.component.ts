@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogOut(){
+    console.log(localStorage);
     localStorage.clear();
   }
 

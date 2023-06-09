@@ -41,7 +41,7 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="description">What's on your mind ? </label>
+              <label for="description">Description </label>
               <textarea
                 type="text"
                 rows="5"
@@ -57,6 +57,34 @@
                 <small *ngIf="form['description'].errors && form['description'].errors?.['required']">This is the required field.</small>
                 <small *ngIf="form['description'].errors && form['description'].errors?.['minlength']">Should have min 4 characters.</small>
                 <small *ngIf="form['description'].errors && form['description'].errors?.['maxlength']">Should contains max 1500 characters.</small>
+              </span>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="subGroup">Group </label>
+<!--              <select class="form-control" formControlName="subGroup" id="subGroup" >-->
+<!--                <option value="" selected disabled>Select Topic</option>-->
+<!--                <option *ngFor="let subGroup of subGroup">{{subGroup.name}}</option>-->
+<!--              </select>-->
+              <input
+                type="text"
+                class="form-control"
+                id="subGroup"
+                name="subGroup"
+                placeholder="Enter Group Name"
+                formControlName="subGroup"
+                required
+              />
+
+              <span *ngIf="submitted || form['subGroup']?.touched || form['subGroup'].dirty && form['subGroup'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['subGroup'].errors && form['subGroup'].errors?.['required']">This is the required field.</small>
+                <small *ngIf="form['subGroup'].errors && form['subGroup'].errors?.['minlength']">Should have min 4 characters.</small>
+                <small *ngIf="form['subGroup'].errors && form['subGroup'].errors?.['maxlength']">Should contains max 1500 characters.</small>
               </span>
 
             </div>
@@ -94,7 +122,8 @@
               <button type="submit" (click)="onNavigateBack()" class="btn btn-primary me-2" [disabled]="!postRequestModel.postImages?.length">
                 Cancel
               </button>
-              <button class="btn btn-primary ms-2" [disabled]="!postRequestModel.postImages?.length">
+<!--              [disabled]="!postRequestModel.postImages?.length"-->
+              <button class="btn btn-primary ms-2" >
                 Create Post
               </button>
             </div>

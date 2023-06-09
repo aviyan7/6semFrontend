@@ -35,6 +35,7 @@ export class AllPostsComponent implements OnInit {
   getAllPosts() {
     this.featureService.getAllPosts().subscribe({
       next: (res: any) => {
+        console.log("allpos",res);
         this.allPosts = res;
       },
       error: (err: any) => {
@@ -44,6 +45,7 @@ export class AllPostsComponent implements OnInit {
   }
 
   getUserDetails() {
+    // this.authService.getUser();
     // this.authService.getUser().subscribe((user: any) => {
     //   this.authService.getSavedUserDetailsById(user?.uid).subscribe({
     //     next: (res: any) => {
@@ -58,23 +60,21 @@ export class AllPostsComponent implements OnInit {
     const modalRef = this.modalService.open(PostCommentComponent);
     modalRef.componentInstance.responseEmitter.subscribe((response: any) => {
       if (response) {
-        this.postActionRequestDetailsModel.date = new Date();
+        this.postActionRequestDetailsModel.text = response;
+        this.postActionRequestDetailsModel.postId = post.id;
 
-        // @ts-ignore
-        this.postActionRequestDetailsModel['comments'] = response;
-        this.postActionRequestDetailsModel['user'] = this.postActionRequestDetailsModel.user;
-        post.comments?.push(this.postActionRequestDetailsModel);
-        this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
-          next: (res: any) => {
+        // post?.comments?.push(this.postActionRequestDetailsModel);
+        this.featureService.postComment(this.postActionRequestDetailsModel).subscribe({
+          next: (response: any)=>{
             this.toastr.success('Comment posted successfully !', 'Success');
-            this.getAllPosts();
-            this.modalService.dismissAll();
+                this.getAllPosts();
+                this.modalService.dismissAll();
           },
           error: (error: any) => {
-            this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
-            this.modalService.dismissAll();
-          },
-        });
+                this.toastr.error('Something went wrong, Unable to post the comment !', 'Error Occurs');
+              },
+        })
+
       } else {
         this.modalService.dismissAll();
       }
@@ -82,7 +82,6 @@ export class AllPostsComponent implements OnInit {
   }
 
   onLikeBtnClick(post: CreatePostRequestModel) {
-    this.postActionRequestDetailsModel.date = new Date();
     post.totalVotes?.push(this.postActionRequestDetailsModel);
     this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
       next: (res: any) => {

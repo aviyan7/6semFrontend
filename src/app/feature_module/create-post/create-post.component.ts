@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {FeatureService} from '../services/feature.service';
 import {CreatePostRequestModel} from '../models/create-post-request.model';
 import {AuthService} from '../../auth_module/services/auth.service';
+import {CreateSubgroupComponent} from "../create-subgroup/create-subgroup.component";
 // import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -34,15 +35,25 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
-      location: [undefined, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      postName: [undefined, Validators.compose([Validators.required])],
       description: [undefined, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(1500)])],
+      subGroup: [undefined, Validators.compose([Validators.required])]
     })
     this.getUserDetails();
+    // this.getALlSubGroup();
   }
 
   getUserDetails() {
 
   }
+
+  // getAllSubGroup(){
+  //   this.featureService.getAllSubGroups().subscribe({
+  //     next: (response: any)=>{
+  //
+  //     }
+  //   })
+  // }
 
   get form(): { [key: string]: AbstractControl } {
     return this.postForm.controls;
@@ -51,17 +62,19 @@ export class CreatePostComponent implements OnInit {
   onSubmit() {
     this.postRequestModel.postName = this.form['postName'].value;
     this.postRequestModel.description = this.form['description'].value;
+    this.postRequestModel.subGroupName = this.form['subGroup'].value;
     // this.postRequestModel.id = uuidv4();
     this.postRequestModel.totalVotes = [''];
     this.postRequestModel.comments = [''];
-    if (this.postForm.valid && this.postRequestModel.postImages?.length) {
+    // this.postForm.valid && this.postRequestModel.postImages?.length
+    if (this.postForm.valid) {
       this.featureService.savePostDetails(this.postRequestModel).subscribe({
         next: (response: any) => {
           this.toastr.success("Post Created Successfully", "Success");
           this.onNavigateBack();
         },
         error: (err: any) => {
-          this.toastr.success("Something went wrong and unable to create post", "Error Occurs");
+          this.toastr.error("Something went wrong and unable to create post", "Error Occurs");
         }
       });
     } else {

@@ -10,6 +10,7 @@ export class FeatureService {
   apiUrlEndPoint: string = '/post';
   baseUrl: string = environment.baseUrl;
   apiUrlEndPoint1: string = '/subGroup';
+  apiUrlEndPoint2: string = '/comments';
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -28,5 +29,9 @@ export class FeatureService {
 
   getAllPosts(): Observable<any> {
     return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint));
+  }
+
+  postComment(data: any): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl.concat(this.apiUrlEndPoint2),data);
   }
 }

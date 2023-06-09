@@ -18,7 +18,7 @@ export class AuthService {
   private isAuthenticate = false;
 
   constructor(
-    private httpClient: HttpClient,
+    private httpClient: HttpClient
   ) {}
 
   protected getApi(): string {
@@ -57,8 +57,14 @@ export class AuthService {
     // return this.auth.sendPasswordResetEmail(email);
   }
 
-  getUser() {
-    // return this.auth.authState;
+  getUser(data: any) {
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint2),data).pipe(
+      map((res: any)=>{
+        if(res){
+          return res;
+        }
+      })
+    );
   }
 
   onSignOut() {

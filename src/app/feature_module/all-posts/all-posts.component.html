@@ -1,32 +1,28 @@
-<div class="all-posts" *ngIf="Object.values(allPosts)?.length">
-  <div class="social-sharing posts-list mt-4" *ngFor="let post of Object.values(allPosts)">
-    <img class="avatar" src="assets/user-avatar.png" alt="Profile Picture">
+<div class="all-posts" *ngIf="allPosts?.length">
+  <div class="social-sharing posts-list mt-4" *ngFor="let post of allPosts">
+    <img class="avatar" src="assets/logoz.png" alt="Profile Picture">
     <div class="row">
       <div class="col-md-12">
-        <div class="post-header">
-          <div class="creator-details">
-            <h2>{{post?.createdByUser?.fullName | titlecase}}</h2>
-          </div>
+        <h3>{{post?.postName}}</h3>
+        <div class="creator-details">
+          Created By: {{post?.userName | titlecase}}
           <p>{{post?.createdDate | date}}</p>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
         <p class="text-justify">
           {{post?.description}}
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 text-center" *ngFor="let d of post?.postImages">
-        <img class="postImages" [src]="d" height="200" alt="Post Images">
-      </div>
-    </div>
+<!--    <div class="row">-->
+<!--      <div class="col-md-12 text-center" *ngFor="let d of post?.postImages">-->
+<!--        <img class="postImages" [src]="d" height="200" alt="Post Images">-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="row">
       <div class="col-md-12">
         <div class="post-actions">
-          <button class="like-button" (click)="onLikeBtnClick(post)"> <i class="fa fa-thumbs-up"></i> Like</button>
+          <span><i class="fa fa-thumbs-up" (click)="onLikeBtnClick(post)"></i>Upvote</span>
+         <span ><i class="fa fa-thumbs-down" (click)="onLikeBtnClick(post)"></i>Downvote</span>
           <button class="comment-button" (click)="onWriteCommentBtnClick(post)"><i class="fa fa-comment"></i> Write Comment</button>
         </div>
       </div>
@@ -34,7 +30,27 @@
     <div class="row">
       <div class="col-md-12">
         <div class="post-likes">
-          <p> {{post?.totalVotes?.length - 1}} likes -  {{post?.comments?.length - 1}} comments | <span type="button" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">See all comments</span> </p>
+          <p> {{post?.totalVotes?.length - 1}} Votes -  {{post?.comment?.length}} Comments | <span type="button" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">See all comments</span> </p>
+          <ng-container *ngFor="let data of post?.comment">
+<!--            h-->
+<!--            <div class="social-sharing posts-list mt-4" >-->
+<!--              y-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-12">-->
+                  <div class="post-header">
+                    <div class="creator-details">
+                      <h6>{{data?.createdDate | date}}</h6>
+                      <h6>{{data?.text}}</h6>
+                    </div>
+                    <p>{{data?.userName | titlecase}}</p>
+                  </div>
+<!--                </div>-->
+                <div class="col-md-12">
+                  <p>{{data?.comments | titlecase}}</p>
+                </div>
+<!--              </div>-->
+<!--            </div>-->
+          </ng-container>
         </div>
       </div>
     </div>
@@ -47,15 +63,17 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ng-container *ngFor="let data of post?.comments">
-          <div class="social-sharing posts-list mt-4" *ngIf="data?.comments">
+        <ng-container *ngFor="let data of post?.comment">
+          <div class="social-sharing posts-list mt-4" *ngIf="data">
             <div class="row">
               <div class="col-md-12">
                 <div class="post-header">
                   <div class="creator-details">
+                    h
                     <h6>{{data?.date | date}}</h6>
+<!--                    <h6>{{comment?.text}}</h6>-->
                   </div>
-                  <p>{{data?.user?.fullName | titlecase}}</p>
+                  <p>{{data?.user?.username | titlecase}}</p>
                 </div>
               </div>
               <div class="col-md-12">
