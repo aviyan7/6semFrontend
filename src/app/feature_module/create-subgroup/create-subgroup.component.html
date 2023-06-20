@@ -61,6 +61,17 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" formControlName="image" multiple>
+          <div class="progress-bar" [style.width.%]="uploadProgress" *ngIf="subGroupForm?.get('image')?.value">
+            {{ uploadProgress }}%
+          </div>
+          <br>
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Preview" class="mt-2">
+          <button *ngIf="previewUrl" (click)="deletePreview()" class="mt-2">Delete Preview</button>
+
+
+        </div>
 
         <div class="row">
           <div class="col-md-12">

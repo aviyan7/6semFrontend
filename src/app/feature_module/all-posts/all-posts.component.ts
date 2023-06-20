@@ -16,6 +16,7 @@ import {ToastrService} from "ngx-toastr";
 export class AllPostsComponent implements OnInit {
 
   Object = Object;
+  showAllComments: boolean = false;
 
   allPosts: Array<any> = new Array<any>();
 
@@ -42,6 +43,10 @@ export class AllPostsComponent implements OnInit {
         this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
       },
     });
+  }
+
+  sellAllComments(data: boolean){
+    data ? this.showAllComments = false : this.showAllComments = true;
   }
 
   getUserDetails() {
@@ -82,12 +87,14 @@ export class AllPostsComponent implements OnInit {
   }
 
   onLikeBtnClick(post: CreatePostRequestModel) {
+    // this.postActionRequestDetailsModel.upVote
     post.totalVotes?.push(this.postActionRequestDetailsModel);
-    this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
-      next: (res: any) => {
-        this.getAllPosts();
-      },
-      error: (error: any) => {},
-    });
+
+    // this.featureService.updatePostDetails(post, Object.keys(FilterUtil.filterObjectIfIdMatched(this.allPosts, post?.id))[0]).subscribe({
+    //   next: (res: any) => {
+    //     this.getAllPosts();
+    //   },
+    //   error: (error: any) => {},
+    // });
   }
 }

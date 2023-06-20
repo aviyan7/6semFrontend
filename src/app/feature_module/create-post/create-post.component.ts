@@ -24,6 +24,7 @@ export class CreatePostComponent implements OnInit {
   submitted: boolean = false;
 
   postRequestModel: CreatePostRequestModel = new CreatePostRequestModel();
+  subGroup: Array<any> = new Array<any>();
 
   constructor(
     private location: Location,
@@ -40,20 +41,20 @@ export class CreatePostComponent implements OnInit {
       subGroup: [undefined, Validators.compose([Validators.required])]
     })
     this.getUserDetails();
-    // this.getALlSubGroup();
+    this.getAllSubGroup();
   }
 
   getUserDetails() {
 
   }
 
-  // getAllSubGroup(){
-  //   this.featureService.getAllSubGroups().subscribe({
-  //     next: (response: any)=>{
-  //
-  //     }
-  //   })
-  // }
+  getAllSubGroup(){
+    this.featureService.getAllSubGroups().subscribe({
+      next: (response: any)=>{
+        this.subGroup = response;
+      }
+    })
+  }
 
   get form(): { [key: string]: AbstractControl } {
     return this.postForm.controls;
@@ -88,7 +89,7 @@ export class CreatePostComponent implements OnInit {
 
     // const resizedImage = await readAndCompressImage(file, imageResizerConfig);
 
-    const filePath = file.name;
+    // const filePath = file.name;
 
     // const fileRef = this.storage.ref(filePath);
     //

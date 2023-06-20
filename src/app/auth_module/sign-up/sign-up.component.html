@@ -70,6 +70,25 @@
           </div>
         </div>
       </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label>Address</label>
+            <input
+              class="form__input form-control"
+              type="address"
+              placeholder="Address"
+              [ngClass]="{ 'is-invalid': submitted && form['address'].errors }" formControlName="address" name="address"
+              required
+            />
+
+            <span *ngIf="submitted || form['address'].touched || form['address'].dirty && form['address'].invalid" class="info-msg text-danger">
+                <small *ngIf="form['address'].errors && form['address'].errors?.['required']">Address is required.</small>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="row mb-3">
         <div class="col-sm-12">
           <div class="form-group">

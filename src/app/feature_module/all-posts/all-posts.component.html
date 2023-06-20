@@ -1,92 +1,95 @@
-<div class="all-posts" *ngIf="allPosts?.length">
-  <div class="social-sharing posts-list mt-4" *ngFor="let post of allPosts">
-    <img class="avatar" src="assets/logoz.png" alt="Profile Picture">
-    <div class="row">
-      <div class="col-md-12">
-        <h3>{{post?.postName}}</h3>
-        <div class="creator-details">
-          Created By: {{post?.userName | titlecase}}
-          <p>{{post?.createdDate | date}}</p>
-        </div>
-        <p class="text-justify">
-          {{post?.description}}
-        </p>
-      </div>
-    </div>
+<!--<div class="all-posts" *ngIf="allPosts?.length">-->
+<!--  <div class="social-sharing posts-list mt-4" *ngFor="let post of allPosts">-->
+<!--    <img class="avatar" src="assets/logoz.png" alt="Profile Picture">-->
 <!--    <div class="row">-->
-<!--      <div class="col-md-12 text-center" *ngFor="let d of post?.postImages">-->
-<!--        <img class="postImages" [src]="d" height="200" alt="Post Images">-->
+<!--      <div class="col-md-12">-->
+<!--        <h3>{{post?.postName}}</h3>-->
+<!--        <div class="creator-details">-->
+<!--          Created By: {{post?.userName | titlecase}}-->
+<!--          <p>{{post?.createdDate | date}}</p>-->
+<!--        </div>-->
+<!--        <p class="text-justify">-->
+<!--          {{post?.description}}-->
+<!--        </p>-->
 <!--      </div>-->
 <!--    </div>-->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="post-actions">
-          <span><i class="fa fa-thumbs-up" (click)="onLikeBtnClick(post)"></i>Upvote</span>
-         <span ><i class="fa fa-thumbs-down" (click)="onLikeBtnClick(post)"></i>Downvote</span>
-          <button class="comment-button" (click)="onWriteCommentBtnClick(post)"><i class="fa fa-comment"></i> Write Comment</button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="post-likes">
-          <p> {{post?.totalVotes?.length - 1}} Votes -  {{post?.comment?.length}} Comments | <span type="button" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">See all comments</span> </p>
-          <ng-container *ngFor="let data of post?.comment">
-<!--            h-->
-<!--            <div class="social-sharing posts-list mt-4" >-->
-<!--              y-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-12">-->
-                  <div class="post-header">
-                    <div class="creator-details">
-                      <h6>{{data?.createdDate | date}}</h6>
-                      <h6>{{data?.text}}</h6>
-                    </div>
-                    <p>{{data?.userName | titlecase}}</p>
-                  </div>
+<!--&lt;!&ndash;    <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="col-md-12 text-center" *ngFor="let d of post?.postImages">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img class="postImages" [src]="d" height="200" alt="Post Images">&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12">-->
+<!--        <div class="post-actions">-->
+<!--          <span><i class="fa fa-thumbs-up" (click)="onLikeBtnClick(post)"></i>Upvote</span>-->
+<!--         <span ><i class="fa fa-thumbs-down" (click)="onLikeBtnClick(post)"></i>Downvote</span>-->
+<!--          <button class="comment-button" (click)="onWriteCommentBtnClick(post)"><i class="fa fa-comment"></i> Write Comment</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12">-->
+<!--        <div class="post-likes">-->
+<!--          <p> {{post?.totalVotes?.length}} Votes   {{post?.comment?.length}} Comments | <span type="button" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="sellAllComments(showAllComments)">{{post?.comment?.length > 4 ? showAllComments ? 'See Less Comments' : 'See All Comments' : ''}}</span> </p>-->
+<!--          <ng-container *ngFor="let data of post?.comment; let i = index;">-->
+<!--            <div *ngIf="showAllComments ? i : i<4">-->
+<!--              &lt;!&ndash;            h&ndash;&gt;-->
+<!--              &lt;!&ndash;            <div class="social-sharing posts-list mt-4" >&ndash;&gt;-->
+<!--              &lt;!&ndash;              y&ndash;&gt;-->
+<!--              &lt;!&ndash;              <div class="row">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <div class="col-md-12">&ndash;&gt;-->
+<!--              <div class="post-header">-->
+<!--                <div class="creator-details">-->
+<!--                  <h6>{{data?.createdDate | date}}</h6>-->
+<!--                  <h6>{{data?.text}}</h6>-->
 <!--                </div>-->
-                <div class="col-md-12">
-                  <p>{{data?.comments | titlecase}}</p>
-                </div>
+<!--                <p>{{data?.userName | titlecase}}</p>-->
+<!--              </div>-->
+<!--              &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--              <div class="col-md-12">-->
+<!--                <p>{{data?.comments | titlecase}}</p>-->
+<!--              </div>-->
+<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            </div>-->
+
+<!--          </ng-container>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash;to view comments&ndash;&gt;-->
+
+<!--    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">-->
+<!--      <div class="offcanvas-header">-->
+<!--        <h5 class="offcanvas-title" id="offcanvasRightLabel">All Comments posted by users</h5>-->
+<!--        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="offcanvas-body">-->
+<!--        <ng-container *ngFor="let data of post?.comment">-->
+<!--          <div class="social-sharing posts-list mt-4" *ngIf="data">-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-12">-->
+<!--                <div class="post-header">-->
+<!--                  <div class="creator-details">-->
+<!--                    h-->
+<!--                    <h6>{{data?.date | date}}</h6>-->
+<!--&lt;!&ndash;                    <h6>{{comment?.text}}</h6>&ndash;&gt;-->
+<!--                  </div>-->
+<!--                  <p>{{data?.user?.username | titlecase}}</p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-md-12">-->
+<!--                <p>{{data?.comments | titlecase}}</p>-->
 <!--              </div>-->
 <!--            </div>-->
-          </ng-container>
-        </div>
-      </div>
-    </div>
+<!--          </div>-->
+<!--        </ng-container>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <!--to view comments-->
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">All Comments posted by users</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ng-container *ngFor="let data of post?.comment">
-          <div class="social-sharing posts-list mt-4" *ngIf="data">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="post-header">
-                  <div class="creator-details">
-                    h
-                    <h6>{{data?.date | date}}</h6>
-<!--                    <h6>{{comment?.text}}</h6>-->
-                  </div>
-                  <p>{{data?.user?.username | titlecase}}</p>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <p>{{data?.comments | titlecase}}</p>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-
-  </div>
-</div>
+<!--  </div>-->
+<!--</div>-->
 
 <div class="no-posts" *ngIf="!Object.values(allPosts).length">
   <div class="row">
@@ -95,3 +98,5 @@
     </div>
   </div>
 </div>
+
+<app-post [allUserPosts]="allPosts"></app-post>

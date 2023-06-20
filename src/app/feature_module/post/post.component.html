@@ -1,0 +1,54 @@
+<div class="col-md-12 col-xl-8 middle-wrapper">
+  <div class="row">
+    <div class="col-md-12 grid-margin" *ngFor="let post of allUserPosts; let i = index;">
+      <div class="card rounded">
+        <div class="card-header">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <img class="img-xs rounded-circle" src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png" alt="">
+              <div class="ml-2">
+                <p>{{post?.userName | titlecase}}</p>
+                <p class="tx-11 text-muted">{{post?.createdDate | date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h4>{{post?.postName}}</h4>
+          <p class="mb-3 tx-14">{{post?.description}}</p>
+          <img class="img-fluid" src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png" alt="">
+        </div>
+        <div class="card-footer">
+          <div class="d-flex post-actions">
+            <a href="javascript:;" class="d-flex align-items-center text-muted">
+              <i class="fa fa-thumbs-up" (click)="onVoteBtnClick()"></i>{{post?.upVotes?.length}}Upvote
+            </a>
+            <a href="javascript:;" class="d-flex align-items-center text-muted m-lg-2">
+              <i class="fa fa-thumbs-down" (click)="onVoteBtnClick()"></i>{{post?.downVotes?.length}}Downvote
+            </a>
+            <a href="javascript:;" class="d-flex align-items-center text-muted m-lg-2">
+              <i class="fa fa-comment" (click)="onWriteComment(post)"></i>Comments
+              <span class="m-lg-5" (click)="showAllComment(showAllComments)">{{post?.comment?.length > 4 ? showAllComments ? 'See Less Comments' : 'See All Comments' : ''}}</span>
+            </a>
+          </div>
+        </div>
+        <ng-container *ngFor="let data of post?.comment; let j = index;">
+          <div *ngIf="showAllComments ?  j : j<2">
+          <h6>{{data?.text}}</h6>
+          <p>Posted at: {{data?.createdDate | date}} <br> Posted By:{{data?.userName | titlecase}}</p>
+          </div>
+        </ng-container>
+        <!--              <div class="card-footer">-->
+        <!--                <div class="d-flex post-actions">-->
+        <!--                        <span><i class="fa fa-thumbs-up" (click)="onLikeBtnClick(post)"></i>Upvote</span>-->
+        <!--                        <span ><i class="fa fa-thumbs-down" (click)="onLikeBtnClick(post)"></i>Downvote</span>-->
+        <!--                        <button class="comment-button" (click)="onWriteCommentBtnClick(post)"><i class="fa fa-comment"></i> Write Comment</button>-->
+        <!--                </div>-->
+        <!--              </div>-->
+      </div>
+
+  </div>
+</div>
+
+
+</div>

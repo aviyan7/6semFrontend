@@ -8,6 +8,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {throwIfAlreadyLoaded} from './auth-guards/module-import-guard';
+import { TextEditorComponent } from './components/text-editor/text-editor.component';
 
 const IMPORTS_EXPORTS = [
   CommonModule,
@@ -25,7 +26,9 @@ const UTILITY_MODULES: Array<any> = [];
 @NgModule({
   imports: [CommonModule, ...UTILITY_MODULES, ...IMPORTS_EXPORTS],
   exports: [...UTILITY_MODULES, ...IMPORTS_EXPORTS],
-  declarations: [],
+  declarations: [
+    TextEditorComponent
+  ],
   entryComponents: [],
 })
 export class CoreModule {

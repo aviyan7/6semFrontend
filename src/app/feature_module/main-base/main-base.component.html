@@ -1,13 +1,40 @@
-<!-- Begin page -->
-<div id="layout-wrapper">
-  <app-header></app-header>
-  <div class="main-content container">
-    <div class="page-content">
-      <div class="container-fluid">
+<!--<div id="layout-wrapper">-->
+<!--  <app-header></app-header>-->
+<!--  <div class="main-content container m-lg-5">-->
+<!--    <div class="page-content">-->
+<!--      <div class="container-fluid">-->
+<!--        <router-outlet></router-outlet>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <app-footer></app-footer>-->
+<!--</div>-->
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3">
+        <app-header></app-header>
+      </div>
+      <div class="col-sm-9">
         <router-outlet></router-outlet>
       </div>
     </div>
+
   </div>
-  <app-footer></app-footer>
 </div>
-<!-- END layout-wrapper -->
+
+
+<!--<div class="main-container d-flex">-->
+<!--  <div class="sidebar" id="side_nav">-->
+<!--    <app-header></app-header>-->
+<!--  </div>-->
+<!--  <div class="content">-->
+<!--    <div class="main-content px-3 pt-4">-->
+<!--      <router-outlet></router-outlet>-->
+<!--    </div>-->
+<!--    <div class="footer">-->
+<!--      <app-footer></app-footer>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

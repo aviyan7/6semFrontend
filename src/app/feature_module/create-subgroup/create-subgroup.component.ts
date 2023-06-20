@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {FeatureService} from "../services/feature.service";
 import {AuthService} from "../../auth_module/services/auth.service";
 import {Createsubgroup} from "../models/createsubgroup.model";
+import {ImageCompressorService} from "../services/image-compressor.service";
 
 @Component({
   selector: 'app-create-subgroup',
@@ -14,6 +15,8 @@ import {Createsubgroup} from "../models/createsubgroup.model";
 export class CreateSubgroupComponent {
 
   subGroupForm: UntypedFormGroup = new UntypedFormGroup({});
+  previewUrl: string | undefined;
+  uploadProgress: number | undefined;
 
   submitted: boolean = false;
   subGroupRequestModel: Createsubgroup = new Createsubgroup();
@@ -24,16 +27,34 @@ export class CreateSubgroupComponent {
     private toastr: ToastrService,
     private featureService: FeatureService,
     private authService: AuthService,
+    private imageCompressorService: ImageCompressorService
   ) { }
 
   ngOnInit(): void {
     this.subGroupForm = this.formBuilder.group({
       name: [undefined, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
       description: [undefined, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(1500)])],
+      image:[undefined, Validators.compose([Validators.required])]
     })
     this.getUserDetails();
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.imageCompressorService.compressImage(file)
+      .then((compressedImage: any) => {
+        this.previewUrl = compressedImage.previewUrl;
+        // Call your image upload API here passing the compressedImage.file
+      })
+      .catch((error: any)=> {
+        console.error('Error compressing image:', error);
+      });
+  }
+
+  deletePreview() {
+    this.previewUrl = '';
+    this.subGroupForm?.get('image')?.patchValue(null);
+  }
   getUserDetails() {
 
   }

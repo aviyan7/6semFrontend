@@ -48,6 +48,11 @@ export class SignUpComponent implements OnInit {
         undefined,
         Validators.compose([Validators.required, Validators.email, Validators.minLength(2)])
       ],
+
+      address: [
+        undefined,
+        Validators.compose([Validators.required, Validators.minLength(2)])
+      ],
       password: [
         undefined,
         Validators.compose([Validators.required, Validators.minLength(6)])

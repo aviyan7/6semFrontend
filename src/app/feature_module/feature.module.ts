@@ -12,6 +12,8 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PostCommentComponent } from './post-comment/post-comment.component';
 import { CreateSubgroupComponent } from './create-subgroup/create-subgroup.component';
+import { PostComponent } from './post/post.component';
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { CreateSubgroupComponent } from './create-subgroup/create-subgroup.compo
     UserProfileComponent,
     PostCommentComponent,
     CreateSubgroupComponent,
+    PostComponent,
   ],
   imports: [
     CommonModule,
     FeatureRoutingModule,
     BaseModule.forChild(),
+    ImageCropperModule
   ]
 })
 export class FeatureModule { }
