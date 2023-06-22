@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FeatureService} from "../services/feature.service";
 import {CreatePostRequestModel} from "../models/create-post-request.model";
 import {PostCommentComponent} from "../post-comment/post-comment.component";
@@ -15,6 +15,7 @@ import {PostActionRequestDetailsModel} from "../models/post-action-request-detai
 export class PostComponent {
   user: any;
   @Input() allUserPosts: Array<any> = new Array<any>();
+  @Output() postTriggered: EventEmitter<any> = new EventEmitter<any>();
   postActionRequestDetailsModel: PostActionRequestDetailsModel = new PostActionRequestDetailsModel();
   showAllComments: boolean = false;
   constructor(
@@ -72,6 +73,7 @@ export class PostComponent {
         this.featureService.postComment(this.postActionRequestDetailsModel).subscribe({
           next: (response: any)=>{
             this.toastr.success('Comment posted successfully !', 'Success');
+            this.postTriggered.emit();
             // this.getUserPost();
             this.modalService.dismissAll();
           },

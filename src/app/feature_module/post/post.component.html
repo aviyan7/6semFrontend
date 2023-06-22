@@ -33,7 +33,7 @@
           </div>
         </div>
         <ng-container *ngFor="let data of post?.comment; let j = index;">
-          <div *ngIf="showAllComments ?  j : j<2">
+          <div *ngIf="showAllComments ?  j : j<4">
           <h6>{{data?.text}}</h6>
           <p>Posted at: {{data?.createdDate | date}} <br> Posted By:{{data?.userName | titlecase}}</p>
           </div>
