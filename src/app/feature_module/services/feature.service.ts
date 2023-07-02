@@ -47,4 +47,8 @@ export class FeatureService {
   getUserPost(): Observable<any>{
     return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint)+'/user');
   }
+
+  joinsubGroup(id: any): Observable<any>{
+    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint1+'/join/'+id));
+  }
 }

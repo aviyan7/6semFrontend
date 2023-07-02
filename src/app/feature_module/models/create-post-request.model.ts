@@ -3,7 +3,7 @@ export class CreatePostRequestModel {
   postName: string | undefined;
   description: string | undefined;
   subGroupName?: string | undefined;
-  postImages: Array<any> = new Array<any>();
+  images: Array<any> = new Array<any>();
   createdByUser: any;
   totalVotes: Array<any> = new Array<any>();
   comments: Array<any> = new Array<any>();

@@ -84,6 +84,11 @@ export class CreatePostComponent implements OnInit {
 
   }
 
+  getImages(data: any){
+    this.postRequestModel.images = data;
+    console.log("k xa",this.postRequestModel.images);
+  }
+
   async uploadFile(event: any) {
     const file = event.target.files[0];
 

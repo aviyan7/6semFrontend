@@ -1,0 +1,51 @@
+<app-create-subgroup></app-create-subgroup>
+<div class="col-md-12 col-xl-8 middle-wrapper">
+  <div class="row">
+    a
+    <div class="col-md-12 grid-margin" *ngFor="let subGroup of subGroups; let i = index;">
+      <div class="card rounded">
+<!--        <div class="card-header">-->
+<!--          <div class="d-flex align-items-center justify-content-between">-->
+<!--            <div class="d-flex align-items-center">-->
+<!--              <img class="img-xs rounded-circle" src="https://therichsubGroup.com/wp-content/uploads/2021/03/avatar6.png" alt="">-->
+<!--              <div class="ml-2">-->
+<!--                a-->
+<!--                <p>{{subGroup?.userName | titlecase}}</p>-->
+<!--                <p class="tx-11 text-muted">{{subGroup?.createdDate | date}}</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="card-body">
+          <h2>{{subGroup?.name}}</h2>
+          <p class="mb-3 tx-14">{{subGroup?.description}}</p>
+          <img *ngIf="subGroup?.images" class="img-fluid" src="assets\{{subGroup?.images}}" alt="">
+        </div>
+        <div class="card-footer">
+          <div class="d-flex post-actions">
+            <a href="javascript:;" class="d-flex align-items-center text-muted m-lg-2">
+              <i class="fa fa-comment" (click)="onJoinSubGroup(subGroup)">Join SubGroup</i>
+            </a>
+          </div>
+        </div>
+        <ng-container *ngFor="let data of subGroup?.comment; let j = index;">
+          <div *ngIf="showAllComments ?  j : j<4">
+            <h6>{{data?.text}}</h6>
+            <p>Posted at: {{data?.createdDate | date}} <br> Posted By:{{data?.userName | titlecase}}</p>
+          </div>
+        </ng-container>
+        <!--              <div class="card-footer">-->
+        <!--                <div class="d-flex subGroup-actions">-->
+        <!--                        <span><i class="fa fa-thumbs-up" (click)="onLikeBtnClick(subGroup)"></i>Upvote</span>-->
+        <!--                        <span ><i class="fa fa-thumbs-down" (click)="onLikeBtnClick(subGroup)"></i>Downvote</span>-->
+        <!--                        <button class="comment-button" (click)="onWriteCommentBtnClick(subGroup)"><i class="fa fa-comment"></i> Write Comment</button>-->
+        <!--                </div>-->
+        <!--              </div>-->
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+

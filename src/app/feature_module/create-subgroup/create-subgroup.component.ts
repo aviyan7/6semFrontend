@@ -78,7 +78,7 @@ export class CreateSubgroupComponent {
   onSubmit() {
     this.subGroupRequestModel.name = this.form['name'].value;
     this.subGroupRequestModel.description = this.form['description'].value;
-    this.subGroupRequestModel.images = this.imageName;
+    // this.subGroupRequestModel.images = this.imageName;
     // this.postRequestModel.id = uuidv4();
     if (this.subGroupForm?.valid) {
       this.featureService.saveSubGroup(this.subGroupRequestModel).subscribe({
@@ -158,6 +158,10 @@ export class CreateSubgroupComponent {
         this.upload(i, this.selectedFiles[i]);
       }
     }
+  }
+
+  getImages(data: any){
+    this.subGroupRequestModel.images = data;
   }
 
 }

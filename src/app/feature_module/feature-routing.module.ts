@@ -6,6 +6,7 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {CreateSubgroupComponent} from "./create-subgroup/create-subgroup.component";
 import {AuthGuard} from "../core_module/auth-guards/auth-guard";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {SubGroupComponent} from "./sub-group/sub-group.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent, data: {title: 'Application Dashboard'}, canActivate: [AuthGuard]},
       {path: 'create-new-post', component: CreatePostComponent, data: {title: 'Post Your Idea'}},
       {path: 'create-new-subGroup', component: CreateSubgroupComponent, data: {title: 'Create New Group'}},
+      {path: 'group', component: SubGroupComponent, data: {title: 'Group'}},
       {path: 'user-profile', component: UserProfileComponent, data: {title: 'User Profile'}}
     ]
   }

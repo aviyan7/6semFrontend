@@ -16,7 +16,7 @@
         <div class="card-body">
           <h4>{{post?.postName}}</h4>
           <p class="mb-3 tx-14">{{post?.description}}</p>
-          <img class="img-fluid" src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png" alt="">
+          <img *ngIf="post?.images" class="img-fluid" src="assets\{{post?.images}}" alt="">
         </div>
         <div class="card-footer">
           <div class="d-flex post-actions">
@@ -27,7 +27,7 @@
               <i class="fa fa-thumbs-down" (click)="onVoteBtnClick()"></i>{{post?.downVotes?.length}}Downvote
             </a>
             <a href="javascript:;" class="d-flex align-items-center text-muted m-lg-2">
-              <i class="fa fa-comment" (click)="onWriteComment(post)"></i>Comments
+              <i class="fa fa-comment" (click)="onWriteComment(post)">Comments</i>
               <span class="m-lg-5" (click)="showAllComment(showAllComments)">{{post?.comment?.length > 4 ? showAllComments ? 'See Less Comments' : 'See All Comments' : ''}}</span>
             </a>
           </div>

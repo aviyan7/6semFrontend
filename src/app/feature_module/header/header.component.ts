@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onCreateNewSubGroup(){
-    this.router.navigate(['/home/create-new-subGroup']);
+    this.router.navigate(['/home/group']);
+    // this.router.navigate(['/home/create-new-subGroup']);
   }
 }

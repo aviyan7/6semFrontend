@@ -9,6 +9,9 @@ import {FeatureService} from "../services/feature.service";
 export class UserProfileComponent implements OnInit {
   user: any;
   allUserPosts: Array<any> = new Array<any>();
+  postsLength: number | undefined = 0;
+  groups: Array<any> = new Array<any>();
+  groupsLength: number | undefined = 0;
   constructor(
     private featureService: FeatureService
   ) {
@@ -32,8 +35,20 @@ export class UserProfileComponent implements OnInit {
   getUserPost(){
     this.featureService.getUserPost().subscribe({
       next: (response: any)=>{
-        console.log("vay",response);
         this.allUserPosts = response;
+        if(this.allUserPosts?.length > 0){
+          this.postsLength = this.allUserPosts?.length;
+          // this.postsLength = this.allUserPosts?.length + 1;
+        }
+        this.allUserPosts?.forEach((f: any)=>{
+          if(!this.groups.includes(f?.subGroupName?.subGroupId)){
+            this.groups.push(f?.subGroupName?.subGroupId);
+          }
+        })
+        if(this.groups?.length > 0){
+          this.groupsLength = this.groups?.length;
+          // this.groupsLength = this.groups?.length + 1;
+        }
       }
     })
 

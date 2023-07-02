@@ -12,9 +12,9 @@
 
 
 <div class="main row mx-3">
-  <div class="col" [class]="postRequestModel.postImages?.length ? 'col-6' : 'col-12'">
+  <div class="col" [class]="postRequestModel.images?.length ? 'col-6' : 'col-12'">
     <div class="card border-primary">
-      <form class="card-body" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <form class="card-body" [formGroup]="postForm">
         <div class="row mb-3">
           <div class="col-md-12">
             <div class="form-group">
@@ -83,30 +83,32 @@
           </div>
         </div>
 
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label> Upload Image </label>
+  <app-file-upload (image)="getImages($event)"></app-file-upload>
 
-              <input
-                type="file"
-                name="image"
-                id="imagepicker"
-                accept="image/*"
-                [multiple]="false"
-                (change)="uploadFile($event)"
-                class="form-control"
-              />
-              <div class="text-info text-center" [hidden]="!uploadPercent || uploadPercent == 100">
-                uploading {{ uploadPercent | number: "1.0-0" }} % of 100% <br />
-                Please wait a little...
-              </div>
-              <div class="text-success text-uppercase text-center" *ngIf="uploadPercent == 100">
-                Upload finished
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div class="row mb-3">-->
+<!--          <div class="col-md-12">-->
+<!--            <div class="form-group">-->
+<!--              <label> Upload Image </label>-->
+
+<!--              <input-->
+<!--                type="file"-->
+<!--                name="image"-->
+<!--                id="imagepicker"-->
+<!--                accept="image/*"-->
+<!--                [multiple]="false"-->
+<!--                (change)="uploadFile($event)"-->
+<!--                class="form-control"-->
+<!--              />-->
+<!--              <div class="text-info text-center" [hidden]="!uploadPercent || uploadPercent == 100">-->
+<!--                uploading {{ uploadPercent | number: "1.0-0" }} % of 100% <br />-->
+<!--                Please wait a little...-->
+<!--              </div>-->
+<!--              <div class="text-success text-uppercase text-center" *ngIf="uploadPercent == 100">-->
+<!--                Upload finished-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="row">
           <div class="col-md-12">
@@ -116,7 +118,7 @@
                 Cancel
               </button>
 <!--              [disabled]="!postRequestModel.postImages?.length"-->
-              <button class="btn btn-primary ms-2" >
+              <button class="btn btn-primary ms-2" (click)="onSubmit()">
                 Create Post
               </button>
             </div>
@@ -125,8 +127,8 @@
       </form>
     </div>
   </div>
-  <div class="col col-md-6" *ngIf="postRequestModel.postImages?.length">
-    <h3 class="text-success text-center text-uppercase">Uploaded Image</h3>
-    <img *ngFor="let img of postRequestModel.postImages" [src]="img" alt="Uploaded Image" class="img-fluid w-100" />
-  </div>
+<!--  <div class="col col-md-6" *ngIf="postRequestModel.postImages?.length">-->
+<!--    <h3 class="text-success text-center text-uppercase">Uploaded Image</h3>-->
+<!--    <img *ngFor="let img of postRequestModel.postImages" [src]="img" alt="Uploaded Image" class="img-fluid w-100" />-->
+<!--  </div>-->
 </div>
