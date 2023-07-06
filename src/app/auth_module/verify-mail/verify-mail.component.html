@@ -1,1 +1,60 @@
-<p>verify-mail works!</p>
+<div class="main">
+  <div class="container b-container p-3" id="b-container">
+    <form class="form" id="b-form" [formGroup]="otpPasswordForm">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="form_title title text-center">Activate Your Account </h2>
+          <div class="alert alert-info mt-4" role="alert">
+            Please Enter OTP sent in your mail to verify your account.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+<!--          <div class="form-group">-->
+<!--            <label>E-mail Address</label>-->
+<!--            <input-->
+<!--              class="form__input form-control"-->
+<!--              type="email"-->
+<!--              placeholder="E-mail Address"-->
+<!--              [ngClass]="{ 'is-invalid': submitted && form['email'].errors }" placeholder="E-mail Address" formControlName="email" name="email"-->
+<!--              required-->
+<!--            />-->
+
+<!--            <span *ngIf="submitted || form['email'].touched || form['email'].dirty && form['email'].invalid" class="info-msg text-danger">-->
+<!--                <small *ngIf="form['email'].errors && form['email'].errors?.['required']">Email is required.</small>-->
+<!--                <small *ngIf="form['email'].errors && form['email'].errors?.['minlength']">Please enter a valid email.</small>-->
+<!--            </span>-->
+<!--          </div>-->
+          <div class="form-group">
+            <label>One-Time Password</label>
+            <input class="form__input form-control"
+                   type="number"
+                   placeholder="OTP"
+                   formControlName="otp"
+                   name="otp"
+                   required>
+            <span *ngIf="submitted || form['otp'].touched || form['otp'].dirty && form['otp'].invalid" class="info-msg text-danger">-->
+                              <small *ngIf="form['otp'].errors && form['otp'].errors?.['required']">One Time Password is required.</small>
+                          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <button (click)="onClickSentLink(otpPasswordForm.value)" [disabled]="submitted" class="btn btn-outline-primary w-100">
+            {{ btnStatus }}
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-2 row mt-4">
+        <div class="col-sm-12 text-center">
+          OTP Expires in {{expiryNumber}} seconds.
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

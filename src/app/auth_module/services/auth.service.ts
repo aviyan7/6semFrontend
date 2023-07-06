@@ -14,6 +14,7 @@ export class AuthService {
   static API = 'auth/register';
   apiUrlEndPoint: string = '/auth/register';
   apiUrlEndPoint2: string = '/auth/authenticate';
+  apiUrlEndPoint3: string = '/auth';
   baseUrl: string = environment.baseUrl;
   private isAuthenticate = false;
 
@@ -54,7 +55,13 @@ export class AuthService {
   }
 
   onForgotPassword(email: string) {
-    // return this.auth.sendPasswordResetEmail(email);
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint3.concat('/email/forgot-password')),email).pipe(
+      map((res: any)=>{
+        if(res){
+          return res;
+        }
+      })
+    );
   }
 
   getUser(data: any) {
@@ -84,6 +91,17 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.isAuthenticate;
+  }
+
+  onVerifyOTP(otp: any) {
+    debugger
+    return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint3.concat('/verify-otp')),otp).pipe(
+      map((res: any)=>{
+        if(res){
+          return res;
+        }
+      })
+    );
   }
 
 

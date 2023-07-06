@@ -49,7 +49,15 @@ export class ForgotPasswordComponent implements OnInit {
       this.btnStatus = 'Please Wait ...';
 
       const { email } = loginDetails;
-      this.toastr.success('Please check your email and follow the instruction before proceed !', 'Success');
+      this.authService.onForgotPassword(email).subscribe({
+        next: (response: any)=>{
+          this.toastr.success('Please check your email and follow the instruction before proceed !', 'Success');
+          this.router.navigate(['/']);
+        },
+        error: err => {
+          this.toastr.error(err.message, 'Error Occurs');
+        }
+      })
       // this.authService
       //   .onForgotPassword(email)
       //   .then((res: any) => {

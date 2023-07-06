@@ -69,7 +69,7 @@
               <label for="subGroup">Group </label>
               <select class="form-control" formControlName="subGroup" id="subGroup" >
                 <option value="" selected disabled>Select Topic</option>
-                <option *ngFor="let subGroup of subGroup">{{subGroup.name}}</option>
+                <option *ngFor="let subGroup of subGroup" value="{{subGroup.id}}">{{subGroup.name}}</option>
               </select>
 
 

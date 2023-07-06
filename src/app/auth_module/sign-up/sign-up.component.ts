@@ -73,8 +73,12 @@ export class SignUpComponent implements OnInit {
       console.log("hahah",loginDetails);
 
       this.authService.registerNewUser(loginDetails).subscribe((response: any)=>{
-        this.toastr.success('User Registered Successfully');
-        this.router.navigateByUrl('/');
+        // localStorage.setItem('token', response.token);
+        localStorage.setItem('email',loginDetails.email);
+        this.toastr.info('Please Verify your E-mail first');
+        this.router.navigate(['/auth/verify-email']);
+        // this.toastr.success('User Registered Successfully');
+        // this.router.navigateByUrl('/');
       }, (error: any)=>{
         this.toastr.error("Something went wrong!!");
       });

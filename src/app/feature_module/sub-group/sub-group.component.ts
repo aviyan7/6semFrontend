@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../auth_module/services/auth.service";
 import {CreatePostRequestModel} from "../models/create-post-request.model";
 import {PostCommentComponent} from "../post-comment/post-comment.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sub-group',
@@ -24,33 +25,44 @@ export class SubGroupComponent {
     private modalService: NgbModal,
     private toastr: ToastrService,
     private authService: AuthService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    // this.getUser();
+    this.getUser();
     this.getAllSubGroups();
   }
 
   getAllSubGroups(){
     this.featureService.getAllSubGroups().subscribe({
       next: (response: any)=>{
+        console.log("response",response);
         this.subGroups = response;
+      },
+      complete: () => {
+        this.subGroups.forEach((f: any)=>{
+          f?.users?.forEach((g: any)=>{
+            if(g?.id == this.user?.id){
+              f.canJoinGroup = false;
+            }
+            else{
+              f.canJoinGroup = true;
+            }
+          })
+        })
       }
     })
   }
 
-  // getUser(){
-  //   this.featureService.getCurrentUser().subscribe({
-  //     next: (response: any)=>{
-  //       this.user = response;
-  //       console.log("haha",this.user);
-  //     },
-  //     complete: () => {
-  //       this.getUserPost();
-  //     }
-  //   })
-  // }
+  getUser(){
+    this.featureService.getCurrentUser().subscribe({
+      next: (response: any)=>{
+        this.user = response;
+        console.log("haha",this.user);
+      }
+    })
+  }
   // getUserPost(){
   //   this.featureService.getUserPost().subscribe({
   //     next: (response: any)=>{
@@ -96,6 +108,10 @@ export class SubGroupComponent {
         this.modalService.dismissAll();
       }
     });
+  }
+
+  onCreateSubGroup(){
+    this.router.navigate(['/home/create-new-subGroup']);
   }
 
   onJoinSubGroup(data: any){

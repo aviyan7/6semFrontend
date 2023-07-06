@@ -23,7 +23,7 @@ import { DashboardComponent } from './admin_module/dashboard/dashboard.component
     BrowserModule,
     AppRoutingModule,
     BaseModule.forRoot(),
-    CoreModule.forRoot(),
+    // CoreModule.forRoot(),
     ToastrModule.forRoot(),
   ],
   providers: [

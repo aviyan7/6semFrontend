@@ -63,7 +63,8 @@ export class CreatePostComponent implements OnInit {
   onSubmit() {
     this.postRequestModel.postName = this.form['postName'].value;
     this.postRequestModel.description = this.form['description'].value;
-    this.postRequestModel.subGroupName = this.form['subGroup'].value;
+    this.postRequestModel.subGroupId = this.form['subGroup'].value;
+    // this.postRequestModel.subGroupName = this.form['subGroup'].value;
     // this.postRequestModel.id = uuidv4();
     this.postRequestModel.totalVotes = [''];
     this.postRequestModel.comments = [''];

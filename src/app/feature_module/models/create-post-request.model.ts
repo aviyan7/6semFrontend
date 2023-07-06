@@ -2,7 +2,8 @@ export class CreatePostRequestModel {
   id: any;
   postName: string | undefined;
   description: string | undefined;
-  subGroupName?: string | undefined;
+  subGroupId?: number | undefined;
+  // subGroupName?: string | undefined;
   images: Array<any> = new Array<any>();
   createdByUser: any;
   totalVotes: Array<any> = new Array<any>();
