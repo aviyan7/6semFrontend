@@ -23,7 +23,7 @@
 
             <span *ngIf="submitted || form['email'].touched || form['email'].dirty && form['email'].invalid" class="info-msg text-danger">
                 <small *ngIf="form['email'].errors && form['email'].errors?.['required']">Email is required.</small>
-                <small *ngIf="form['email'].errors && form['email'].errors?.['minlength']">Please enter a valid email.</small>
+                <small *ngIf="form['email'].errors && form['email'].errors?.['pattern']">Please enter a valid email.</small>
             </span>
           </div>
         </div>

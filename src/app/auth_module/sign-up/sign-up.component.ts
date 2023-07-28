@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
       ],
       email: [
         undefined,
-        Validators.compose([Validators.required, Validators.email, Validators.minLength(2)])
+        Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)])
       ],
 
       address: [

@@ -8,5 +8,8 @@ export class CreatePostRequestModel {
   createdByUser: any;
   totalVotes: Array<any> = new Array<any>();
   comments: Array<any> = new Array<any>();
+  pageNumber?: number | undefined;
+  pageSize?: number | undefined;
+
   // createdDate: Date = new Date();
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from "../../../environments/environment";
 import {Createsubgroup} from "../models/createsubgroup.model";
@@ -28,8 +28,23 @@ export class FeatureService {
     return this.httpClient.put(this.baseUrl.concat(this.apiUrlEndPoint),data);
   }
 
-  getAllPosts(): Observable<any> {
-    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint));
+  // getAllPosts(): Observable<any> {
+  //   // return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint+'/page'));
+  //   return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint));
+  // }
+
+  getAllPosts(page?: number, size?: number): Observable<any> {
+    // return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint+'/page'));
+    let params;
+    if(page && size){
+      params = new HttpParams()
+        .set('page', page.toString())
+        .set('size', size.toString());
+    }
+    // const params = new HttpParams()
+    //   .set('page', page.toString())
+    //   .set('size', size.toString());
+    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint), {params});
   }
 
   postComment(data: any): Observable<any> {

@@ -18,6 +18,7 @@ export class PostComponent {
   @Output() postTriggered: EventEmitter<any> = new EventEmitter<any>();
   postActionRequestDetailsModel: PostActionRequestDetailsModel = new PostActionRequestDetailsModel();
   showAllComments: boolean = false;
+  allPosts: Array<any> = new Array<any>();
   constructor(
     private featureService: FeatureService,
     private modalService: NgbModal,
@@ -73,7 +74,7 @@ export class PostComponent {
         this.featureService.postComment(this.postActionRequestDetailsModel).subscribe({
           next: (response: any)=>{
             this.toastr.success('Comment posted successfully !', 'Success');
-            this.postTriggered.emit();
+            this.postTriggered.emit(post);
             // this.getUserPost();
             this.modalService.dismissAll();
           },

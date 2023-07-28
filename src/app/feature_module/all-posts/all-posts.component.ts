@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FeatureService} from '../services/feature.service';
 import {CreatePostRequestModel} from '../models/create-post-request.model';
 import {PostActionRequestDetailsModel} from '../models/post-action-request-details.model';
@@ -17,6 +17,9 @@ export class AllPostsComponent implements OnInit {
 
   Object = Object;
   showAllComments: boolean = false;
+  loading = false;
+  currentPage = 0;
+  pageSize = 1;
 
   allPosts: Array<any> = new Array<any>();
 
@@ -33,11 +36,29 @@ export class AllPostsComponent implements OnInit {
     this.getUserDetails();
   }
 
-  getAllPosts() {
-    this.featureService.getAllPosts().subscribe({
+  getPostAfterComment(event: any){
+    console.log("eve",event);
+    debugger
+    this.featureService.getAllPosts(event?.pageNumber, event?.pageSize).subscribe({
       next: (res: any) => {
+        this.allPosts = [];
         console.log("allpos",res);
-        this.allPosts = res;
+        this.allPosts.push(...res?.content);
+        // this.allPosts = res?.content;
+      },
+      error: (err: any) => {
+        this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
+      },
+    });
+  }
+
+  getAllPosts() {
+    this.featureService.getAllPosts(this.currentPage, this.pageSize).subscribe({
+      next: (res: any) => {
+        console.log("allpos",res?.content);
+        // this.allPosts.push(...res?.content);
+        this.allPosts.push(...res?.content);
+        // this.allPosts = res?.content;
       },
       error: (err: any) => {
         this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
@@ -96,5 +117,19 @@ export class AllPostsComponent implements OnInit {
     //   },
     //   error: (error: any) => {},
     // });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight && !this.loading) {
+      this.currentPage++;
+      this.getAllPosts();
+    }
   }
 }
