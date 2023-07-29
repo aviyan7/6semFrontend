@@ -60,9 +60,19 @@ export class LoginComponent implements OnInit {
       const { email, password } = loginDetails;
       this.authService.loginUser(loginDetails).subscribe((response: any)=>{
               console.log("hhh",response);
-              localStorage.setItem('token', response.token);
+              if(localStorage.getItem('role')=='ADMIN'){
+                this.router.navigate(['/admin']);
+              } else {
+                this.router.navigate(['/home/dashboard']);
+              }
+              // localStorage.setItem('role', response?.role[0]?.authority);
               this.toastr.success('Sign In successfully !', 'Success');
-              this.router.navigate(['/home/dashboard']);
+
+              // if(response?.role[0]?.authority == 'ADMIN'){
+              //   this.router.navigate(['/admin/']);
+              // } else {
+              //   this.router.navigate(['/home/dashboard']);
+              // }
       }, (error: any)=>{
         this.toastr.warning('Credentials do not match !', 'Warning');
       })

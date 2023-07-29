@@ -5,6 +5,7 @@ import {AuthComponent} from './auth/auth.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {VerifyMailComponent} from './verify-mail/verify-mail.component';
+import {VerifyPasswordComponent} from "./verify-password/verify-password.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
         path: 'verify-email',
         component: VerifyMailComponent,
         data : {title: 'Verify Your Email'}
+      },
+      {
+        path: 'verify-password',
+        component: VerifyPasswordComponent,
+        data : {title: 'Change Your Password'}
       }
     ]
   }

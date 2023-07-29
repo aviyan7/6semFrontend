@@ -10,12 +10,10 @@ import {ToastrModule} from 'ngx-toastr';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthInterceptor} from "./core_module/auth-interceptor/auth-interceptor";
-import { DashboardComponent } from './admin_module/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
   ],
   imports: [
     HttpClientModule,

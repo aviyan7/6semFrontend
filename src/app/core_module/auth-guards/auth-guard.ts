@@ -16,7 +16,14 @@ export class AuthGuard implements CanActivate {
     //   this.router.navigate(['/login']);
     //   return false;
     // }
+    // const token = localStorage.getItem('token');
+    // const tokenExpired = this.isTokenExpired(token);
+    // if(tokenExpired){
+    //   this.router.navigate(['/login']);
+    //   return false;
+    // }
     if(localStorage.getItem('token')){
+      console.log("token",localStorage.getItem('token'));
       return true;
     }
     this.router.navigate(['/login']);

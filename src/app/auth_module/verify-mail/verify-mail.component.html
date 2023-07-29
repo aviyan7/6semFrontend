@@ -34,7 +34,7 @@
                    formControlName="otp"
                    name="otp"
                    required>
-            <span *ngIf="submitted || form['otp'].touched || form['otp'].dirty && form['otp'].invalid" class="info-msg text-danger">-->
+            <span *ngIf="submitted || form['otp'].touched || form['otp'].dirty && form['otp'].invalid" class="info-msg text-danger">
                               <small *ngIf="form['otp'].errors && form['otp'].errors?.['required']">One Time Password is required.</small>
                           </span>
           </div>

@@ -93,12 +93,14 @@
 
   <div class="no-posts" *ngIf="!Object.values(allPosts).length">
     <div class="row">
-      <div class="col-md-12">
-        <p>No post has been created yet. Please create to view post details !</p>
+      <div class="col-md-12 noPost">
+        <p>No posts available.</p>
+        <p> Please create a post or join a group to view post details !</p>
       </div>
     </div>
   </div>
 
   <app-post [allUserPosts]="allPosts" (postTriggered)="getPostAfterComment($event)"></app-post>
+<app-scrolltotop></app-scrolltotop>
 
 

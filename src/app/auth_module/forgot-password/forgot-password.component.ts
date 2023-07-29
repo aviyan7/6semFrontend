@@ -52,7 +52,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.authService.onForgotPassword(email).subscribe({
         next: (response: any)=>{
           this.toastr.success('Please check your email and follow the instruction before proceed !', 'Success');
-          this.router.navigate(['/']);
+          this.router.navigate(['/auth/verify-password']);
         },
         error: err => {
           this.toastr.error(err.message, 'Error Occurs');

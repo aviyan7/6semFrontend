@@ -32,24 +32,26 @@ export class AllPostsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllPosts();
-    this.getUserDetails();
+    if(localStorage.getItem('allPost')){
+      let a = localStorage.getItem('allPost');
+      this.allPosts.push(a);
+      this.allPosts = JSON.parse(this.allPosts[0]);
+      localStorage.removeItem('allPost');
+    } else {
+      this.getAllPosts();
+      this.getUserDetails();
+    }
   }
 
   getPostAfterComment(event: any){
     console.log("eve",event);
-    debugger
-    this.featureService.getAllPosts(event?.pageNumber, event?.pageSize).subscribe({
-      next: (res: any) => {
-        this.allPosts = [];
-        console.log("allpos",res);
-        this.allPosts.push(...res?.content);
-        // this.allPosts = res?.content;
-      },
-      error: (err: any) => {
-        this.toastr.error("Something went wrong and unable to get posts", "Error Occurs");
-      },
-    });
+    this.allPosts?.forEach((f: any)=>{
+      if(f?.id==event?.id){
+        f.comment = event?.comment;
+      }
+    })
+    localStorage.setItem('allPost',JSON.stringify(this.allPosts));
+    window.location.reload();
   }
 
   getAllPosts() {

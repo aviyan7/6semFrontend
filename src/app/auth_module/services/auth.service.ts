@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {HttpUtils} from '../../core_module/utils/http-utils/http-utils';
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {environment} from "../../../environments/environment";
+import jwt_decode from 'jwt-decode';
 
 
 @Injectable({
@@ -39,6 +39,11 @@ export class AuthService {
     return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint2),data).pipe(
       map((res: any)=>{
         if(res){
+          console.log("resiiii",res);
+          let a: any;
+          a = jwt_decode(res?.token);
+          localStorage.setItem('role',a?.role[0]?.authority);
+          localStorage.setItem('token',res?.token);
           this.isAuthenticate = true;
           return res;
         }
@@ -46,12 +51,14 @@ export class AuthService {
     );
   }
 
-  onSignUp(email: string, password: string) {
-    // return this.auth.createUserWithEmailAndPassword(email, password);
-  }
-
-  onSignIn(email: string, password: string) {
-    // return this.auth.signInWithEmailAndPassword(email, password);
+  resetPassword(data: any): Observable<any>{
+    return this.httpClient.post(this.baseUrl.concat("/user/reset-password"),data).pipe(
+      map((res: any)=>{
+        if(res){
+          return res;
+        }
+      })
+    );
   }
 
   onForgotPassword(email: string) {
@@ -94,7 +101,6 @@ export class AuthService {
   }
 
   onVerifyOTP(otp: any) {
-    debugger
     return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint3.concat('/verify-otp')),otp).pipe(
       map((res: any)=>{
         if(res){

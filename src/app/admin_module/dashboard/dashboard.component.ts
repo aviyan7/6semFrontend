@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  status = false;
-  addToggle()
-  {
-    this.status = !this.status;
+  constructor() {
   }
+  // status = false;
+  // addToggle()
+  // {
+  //   this.status = !this.status;
+  // }
 
 }

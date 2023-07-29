@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FeatureService} from "../services/feature.service";
 
 @Component({
@@ -12,6 +12,8 @@ export class UserProfileComponent implements OnInit {
   postsLength: number | undefined = 0;
   groups: Array<any> = new Array<any>();
   groupsLength: number | undefined = 0;
+  currentPage = 0;
+  pageSize = 1;
   constructor(
     private featureService: FeatureService
   ) {
@@ -33,9 +35,9 @@ export class UserProfileComponent implements OnInit {
     })
   }
   getUserPost(){
-    this.featureService.getUserPost().subscribe({
+    this.featureService.getUserPost(this.currentPage, this.pageSize).subscribe({
       next: (response: any)=>{
-        this.allUserPosts = response;
+        this.allUserPosts.push(...response?.content);
         if(this.allUserPosts?.length > 0){
           this.postsLength = this.allUserPosts?.length;
           // this.postsLength = this.allUserPosts?.length + 1;
@@ -52,6 +54,20 @@ export class UserProfileComponent implements OnInit {
       }
     })
 
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      this.currentPage++;
+      this.getUserPost();
+    }
   }
 
 }

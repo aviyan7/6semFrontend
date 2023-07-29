@@ -59,8 +59,14 @@ export class FeatureService {
     return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint3));
   }
 
-  getUserPost(): Observable<any>{
-    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint)+'/user');
+  getUserPost(page?: number, size?: number): Observable<any>{
+    let params;
+    if(page && size){
+      params = new HttpParams()
+        .set('page', page.toString())
+        .set('size', size.toString());
+    }
+    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint)+'/user',{params});
   }
 
   joinsubGroup(id: any): Observable<any>{
